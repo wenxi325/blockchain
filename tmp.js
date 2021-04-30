@@ -42,6 +42,7 @@ app.get('/mine', function(req, res) {
     });
 });
 
+// register a node and broadcast it the network
 app.post('/register-and-broadcast-node', function(req, res) {
 	const newNodeUrl = req.body.newNodeUrl;
 	if (bitcoin.networkNodes.indexOf(newNodeUrl) == -1) bitcoin.networkNodes.push(newNodeUrl);
@@ -74,6 +75,8 @@ app.post('/register-and-broadcast-node', function(req, res) {
 	});
 });
 
+
+// register a node with the network
 app.post('/register-node', function(req, res) {
 	const newNodeUrl = req.body.newNodeUrl;
 	const nodeNotAlreadyPresent = bitcoin.networkNodes.indexOf(newNodeUrl) == -1;
@@ -82,6 +85,8 @@ app.post('/register-node', function(req, res) {
 	res.json({ note: 'New node registered successfully.' });
 });
 
+
+// register multiple nodes at once
 app.post('/register-nodes-bulk', function(req, res) {
 	const allNetworkNodes = req.body.allNetworkNodes;
 	allNetworkNodes.forEach(networkNodeUrl => {
